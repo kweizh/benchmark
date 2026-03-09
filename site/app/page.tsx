@@ -95,7 +95,7 @@ export default async function Home() {
           </p>
 
           <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground pt-4">
-            <a href="#" className="flex items-center gap-2 hover:text-primary transition-colors">
+            <a href="https://github.com/TabbyML/jj-benchmark" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
               <Github className="w-4 h-4" />
               <span>View on GitHub</span>
             </a>
