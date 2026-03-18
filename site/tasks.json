@@ -1,202 +1,252 @@
 {
   "create_restore_snapshot": [
     {
-      "job_name": "2026-03-18__21-51-39",
-      "trial_name": "create_restore_snapshot__2q6NXcX",
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "create_restore_snapshot__a2L5JCH",
       "agent": "pochi",
       "model": "google/gemini-3-flash",
       "provider": "google",
       "passed": true,
       "reward": 1,
       "error": false,
-      "latency_sec": 317.152,
+      "latency_sec": 226.451,
       "latency_breakdown": {
-        "env_setup": 5.293,
-        "agent_setup": 18.106,
-        "agent_exec": 270.849,
-        "verifier": 16.674
+        "env_setup": 4.665,
+        "agent_setup": 18.934,
+        "agent_exec": 180.211,
+        "verifier": 16.816
       },
       "tokens": {
         "input": 0,
         "output": 0,
         "cache": 0
       },
-      "trajectory_id": "it4ITtK4"
+      "trajectory_id": "W1r2XdVB"
     }
   ],
   "env_vars_security_check": [
     {
-      "job_name": "2026-03-18__21-51-39",
-      "trial_name": "env_vars_security_check__d4urmdV",
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "env_vars_security_check__zgoZUy2",
       "agent": "pochi",
       "model": "google/gemini-3-flash",
       "provider": "google",
       "passed": true,
       "reward": 1,
       "error": false,
-      "latency_sec": 391.152,
+      "latency_sec": 123.209,
       "latency_breakdown": {
-        "env_setup": 4.562,
-        "agent_setup": 13.442,
-        "agent_exec": 355.84,
-        "verifier": 11.543
+        "env_setup": 4.009,
+        "agent_setup": 12.418,
+        "agent_exec": 93.393,
+        "verifier": 9.333
       },
       "tokens": {
         "input": 0,
         "output": 0,
         "cache": 0
       },
-      "trajectory_id": "NyOeZ5Qd"
+      "trajectory_id": "xVlq5RWl"
+    }
+  ],
+  "manage_nginx_config": [
+    {
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "manage_nginx_config__A9bfGaB",
+      "agent": "pochi",
+      "model": "google/gemini-3-flash",
+      "provider": "google",
+      "passed": false,
+      "reward": 0,
+      "error": false,
+      "latency_sec": 117.657,
+      "latency_breakdown": {
+        "env_setup": 13.346,
+        "agent_setup": 12.064,
+        "agent_exec": 78.033,
+        "verifier": 9.574
+      },
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "cache": 0
+      },
+      "trajectory_id": "lPPVNHyr"
     }
   ],
   "metadata_association": [
     {
-      "job_name": "2026-03-18__21-51-39",
-      "trial_name": "metadata_association__yJBSczw",
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "metadata_association__7WS9RHc",
       "agent": "pochi",
       "model": "google/gemini-3-flash",
       "provider": "google",
       "passed": true,
       "reward": 1,
       "error": false,
-      "latency_sec": 295.369,
+      "latency_sec": 99.421,
       "latency_breakdown": {
-        "env_setup": 5.362,
-        "agent_setup": 17.33,
-        "agent_exec": 256.505,
-        "verifier": 9.734
+        "env_setup": 4.653,
+        "agent_setup": 16.482,
+        "agent_exec": 66.404,
+        "verifier": 6.807
       },
       "tokens": {
         "input": 0,
         "output": 0,
         "cache": 0
       },
-      "trajectory_id": "kLG3fH34"
+      "trajectory_id": "FdLk5ElL"
     }
   ],
   "monitor_background_streaming": [
     {
-      "job_name": "2026-03-18__21-51-39",
-      "trial_name": "monitor_background_streaming__sUNCJ8T",
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "monitor_background_streaming__fQa6Fif",
       "agent": "pochi",
       "model": "google/gemini-3-flash",
       "provider": "google",
       "passed": true,
       "reward": 1,
       "error": false,
-      "latency_sec": 397.474,
+      "latency_sec": 185.02,
       "latency_breakdown": {
-        "env_setup": 6.506,
-        "agent_setup": 17.387,
-        "agent_exec": 354.396,
-        "verifier": 12.932
+        "env_setup": 4.936,
+        "agent_setup": 20.649,
+        "agent_exec": 138.353,
+        "verifier": 15.332
       },
       "tokens": {
         "input": 0,
         "output": 0,
         "cache": 0
       },
-      "trajectory_id": "ES7bebVj"
+      "trajectory_id": "TAp7GqNU"
     }
   ],
   "python_env_setup_uv": [
     {
-      "job_name": "2026-03-18__21-51-39",
-      "trial_name": "python_env_setup_uv__aPLqcpr",
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "python_env_setup_uv__ZuQiU3Q",
       "agent": "pochi",
       "model": "google/gemini-3-flash",
       "provider": "google",
       "passed": false,
       "reward": 0,
       "error": false,
-      "latency_sec": 438.382,
+      "latency_sec": 89.699,
       "latency_breakdown": {
-        "env_setup": 4.919,
-        "agent_setup": 15.478,
-        "agent_exec": 399.719,
-        "verifier": 12.405
+        "env_setup": 2.922,
+        "agent_setup": 13.562,
+        "agent_exec": 57.704,
+        "verifier": 11.224
       },
       "tokens": {
         "input": 0,
         "output": 0,
         "cache": 0
       },
-      "trajectory_id": "4aPu7qg3"
+      "trajectory_id": "V05oZsb9"
     }
   ],
   "sdk_basic_sandbox": [
     {
-      "job_name": "2026-03-18__21-51-39",
-      "trial_name": "sdk_basic_sandbox__KKp9ACQ",
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "sdk_basic_sandbox__6aymVdU",
       "agent": "pochi",
       "model": "google/gemini-3-flash",
       "provider": "google",
-      "passed": false,
-      "reward": 0,
+      "passed": true,
+      "reward": 1,
       "error": false,
-      "latency_sec": 270.04,
+      "latency_sec": 165.171,
       "latency_breakdown": {
-        "env_setup": 4.597,
-        "agent_setup": 15.031,
-        "agent_exec": 231.747,
-        "verifier": 11.994
+        "env_setup": 2.33,
+        "agent_setup": 13.388,
+        "agent_exec": 131.747,
+        "verifier": 12.197
       },
       "tokens": {
         "input": 0,
         "output": 0,
         "cache": 0
       },
-      "trajectory_id": "OZDPuPU1"
+      "trajectory_id": "0meY8QN5"
     }
   ],
   "security_command_capture": [
     {
-      "job_name": "2026-03-18__21-51-39",
-      "trial_name": "security_command_capture__9J6AiRx",
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "security_command_capture__nzvCkxS",
       "agent": "pochi",
       "model": "google/gemini-3-flash",
       "provider": "google",
       "passed": false,
       "reward": 0,
       "error": false,
-      "latency_sec": 250.91,
+      "latency_sec": 213.631,
       "latency_breakdown": {
-        "env_setup": 4.636,
-        "agent_setup": 16.589,
-        "agent_exec": 211.23,
-        "verifier": 12.494
+        "env_setup": 2.584,
+        "agent_setup": 13.958,
+        "agent_exec": 179.705,
+        "verifier": 12.103
       },
       "tokens": {
         "input": 0,
         "output": 0,
         "cache": 0
       },
-      "trajectory_id": "eF5cUsaL"
+      "trajectory_id": "GU34G3Od"
     }
   ],
   "web_server_public_url": [
     {
-      "job_name": "2026-03-18__21-51-39",
-      "trial_name": "web_server_public_url__xtdcH5H",
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "web_server_public_url__hrYcaw7",
       "agent": "pochi",
       "model": "google/gemini-3-flash",
       "provider": "google",
       "passed": false,
       "reward": 0,
       "error": false,
-      "latency_sec": 191.588,
+      "latency_sec": 178.574,
       "latency_breakdown": {
-        "env_setup": 4.672,
-        "agent_setup": 14.931,
-        "agent_exec": 153.936,
-        "verifier": 12.024
+        "env_setup": 2.3,
+        "agent_setup": 11.501,
+        "agent_exec": 148.822,
+        "verifier": 11.067
       },
       "tokens": {
         "input": 0,
         "output": 0,
         "cache": 0
       },
-      "trajectory_id": "YGo69M3R"
+      "trajectory_id": "qoNO5oIO"
+    }
+  ],
+  "multiple_code_contexts": [
+    {
+      "job_name": "2026-03-19__01-06-10",
+      "trial_name": "multiple_code_contexts__dh9m7yq",
+      "agent": "pochi",
+      "model": "google/gemini-3-flash",
+      "provider": "google",
+      "passed": true,
+      "reward": 1,
+      "error": false,
+      "latency_sec": 266.496,
+      "latency_breakdown": {
+        "env_setup": 21.214,
+        "agent_setup": 10.52,
+        "agent_exec": 224.813,
+        "verifier": 5.135
+      },
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "cache": 0
+      },
+      "trajectory_id": "XbODASVY"
     }
   ]
 }
