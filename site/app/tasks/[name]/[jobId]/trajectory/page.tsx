@@ -5,7 +5,7 @@ import zealtConfig from "@/../zealt.json";
 
 type RouteParams = {
   name: string;
-  jobName: string;
+  jobId: string;
 };
 
 type TrialEntry = {
@@ -18,12 +18,31 @@ function buildFallbackUrl(jobName: string, trialName: string) {
   return `${zealtConfig.github_repo}/blob/main/jobs/${jobName}/${trialName}/result.json`
 }
 
+function splitTrialName(trialName: string): { taskName: string; jobId: string } | null {
+  const separatorIndex = trialName.lastIndexOf("__");
+  if (separatorIndex <= 0 || separatorIndex >= trialName.length - 2) {
+    return null;
+  }
+
+  return {
+    taskName: trialName.slice(0, separatorIndex),
+    jobId: trialName.slice(separatorIndex + 2),
+  };
+}
+
 function getServerBaseUrl() {
   return process.env.CLIPS_BASE_URL || 'https://cc.getpochi.com';
 }
 
-function buildClipUrl(clipId: string, title: string): string {
-  const url = new URL(`/e/${clipId}`, getServerBaseUrl());
+function getGithubOwnerRepo(): string {
+  const repoUrl = zealtConfig.github_repo;
+  const match = repoUrl.match(/github\.com\/(.+?\/[^/]+)/);
+  return match ? match[1] : repoUrl;
+}
+
+function buildClipUrl(clipId: string, jobName: string, trialName: string, title: string): string {
+  const ownerRepo = getGithubOwnerRepo();
+  const url = new URL(`/f/raw.githubusercontent.com/${ownerRepo}/refs/heads/main/jobs/${jobName}/${trialName}/agent/pochi/trajectory.jsonl`, getServerBaseUrl());
   url.searchParams.set("title", title);
   url.searchParams.set("theme", "dark");
   return url.toString();
@@ -39,15 +58,16 @@ function isTrialEntry(value: unknown): value is TrialEntry {
     return false;
   }
 
-  if (typeof trial.trajectory_id === "undefined") {
-    return true;
-  }
-
-  return typeof trial.trajectory_id === "string";
+  return true;
 }
 
-function findTrialEntry(jobName: string, trialName: string): TrialEntry | null {
-  for (const trials of Object.values(tasksData as Record<string, unknown>)) {
+function findTrialEntry(taskName: string, jobId: string): TrialEntry | null {
+  for (const task of Object.values(tasksData as Record<string, unknown>)) {
+    if (typeof task !== "object" || task === null) {
+      continue;
+    }
+
+    const trials = (task as { trials?: unknown }).trials;
     if (!Array.isArray(trials)) {
       continue;
     }
@@ -57,7 +77,12 @@ function findTrialEntry(jobName: string, trialName: string): TrialEntry | null {
         continue;
       }
 
-      if (trial.job_name === jobName && trial.trial_name === trialName) {
+      const splitName = splitTrialName(trial.trial_name);
+      if (!splitName) {
+        continue;
+      }
+
+      if (splitName.taskName === taskName && splitName.jobId === jobId) {
         return trial;
       }
     }
@@ -71,7 +96,12 @@ export const dynamicParams = false;
 export function generateStaticParams(): RouteParams[] {
   const params: RouteParams[] = [];
 
-  for (const trials of Object.values(tasksData as Record<string, unknown>)) {
+  for (const task of Object.values(tasksData as Record<string, unknown>)) {
+    if (typeof task !== "object" || task === null) {
+      continue;
+    }
+
+    const trials = (task as { trials?: unknown }).trials;
     if (!Array.isArray(trials)) {
       continue;
     }
@@ -81,9 +111,14 @@ export function generateStaticParams(): RouteParams[] {
         continue;
       }
 
+      const splitName = splitTrialName(trial.trial_name);
+      if (!splitName) {
+        continue;
+      }
+
       params.push({
-        name: trial.trial_name,
-        jobName: trial.job_name,
+        name: splitName.taskName,
+        jobId: splitName.jobId,
       });
     }
   }
@@ -97,10 +132,15 @@ export default async function TrajectoryRoutePage({
   params: Promise<RouteParams>;
 }) {
   const resolvedParams = await params;
-  const fallbackUrl = buildFallbackUrl(resolvedParams.jobName, resolvedParams.name);
-  const trialEntry = findTrialEntry(resolvedParams.jobName, resolvedParams.name);
+
+  const trialEntry = findTrialEntry(resolvedParams.name, resolvedParams.jobId);
+  const fallbackUrl = trialEntry
+    ? buildFallbackUrl(trialEntry.job_name, trialEntry.trial_name)
+    : null;
   const clipId = trialEntry?.trajectory_id?.trim() || null;
-  const trajectoryUrl = clipId ? buildClipUrl(clipId, resolvedParams.name) : null;
+  const trajectoryUrl = clipId && trialEntry
+    ? buildClipUrl(clipId, trialEntry.job_name, trialEntry.trial_name, resolvedParams.name)
+    : null;
 
   return (
     <div className="w-full h-screen bg-background text-foreground font-sans selection:bg-primary/20 overflow-hidden">
@@ -108,7 +148,7 @@ export default async function TrajectoryRoutePage({
       <TrajectoryPage
         title={resolvedParams.name}
         trajectoryUrl={trajectoryUrl}
-        fallbackUrl={fallbackUrl}
+        fallbackUrl={fallbackUrl ?? ""}
       />
     </div>
   );
